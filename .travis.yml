@@ -10,18 +10,20 @@ install:
 
 env:
   global:
+  - CONTAINER_APP=response-app
+  - CONTAINER_CRON=response-cron
   - TAG=v1.0.$TRAVIS_BUILD_NUMBER
 
 script:
-- docker build -t $REPO:$TAG -f Dockerfile.response .
-- docker build -t $REPO:$TAG -f Dockerfile.cron .
+- docker build -t $CONTAINER_APP:$TAG -f Dockerfile.response .
+- docker build -t $CONTAINER_CRON:$TAG -f Dockerfile.cron .
 
 deploy:
   skip_cleanup: true
   provider: script
   script: 
-    - sh ./deploy.sh response-app
-    - sh ./deploy.sh response-cron 
+    - sh ./deploy.sh $CONTAINER_APP
+    - sh ./deploy.sh $CONTAINER_CRON
   # on:
   #   branch: master
 
