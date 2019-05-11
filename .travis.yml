@@ -21,9 +21,7 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: 
-    - sh ./deploy.sh $CONTAINER_APP
-    - sh ./deploy.sh $CONTAINER_CRON
+  script: sh ./deploy.sh $CONTAINER_APP & sh ./deploy.sh $CONTAINER_CRON
   on:
     all_branches: true
     # branch: master

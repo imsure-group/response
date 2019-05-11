@@ -1,5 +1,6 @@
 #!/bin/bash
 $REPO=$1
+echo "Running deployment for container: $REPO"
 docker build -t $REPO:$TAG -f Dockerfile .
 docker --version  
 pip install --user awscli
