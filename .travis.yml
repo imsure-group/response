@@ -24,8 +24,9 @@ deploy:
   script: 
     - sh ./deploy.sh $CONTAINER_APP
     - sh ./deploy.sh $CONTAINER_CRON
-  # on:
-  #   branch: master
+  on:
+    all_branches: true
+    # branch: master
 
 notifications:
   slack: bymiles:u7E9pEbrU1gdYCZ297DgFeua
