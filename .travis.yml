@@ -1,0 +1,29 @@
+language: python
+
+python:
+  - "3.7"
+
+sudo: required
+
+install:
+  - pip install -r requirements.txt
+
+env:
+  global:
+  - TAG=v1.0.$TRAVIS_BUILD_NUMBER
+
+script:
+- docker build -t $REPO:$TAG -f Dockerfile.response .
+- docker build -t $REPO:$TAG -f Dockerfile.cron .
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: 
+    - sh ./deploy.sh response-app
+    - sh ./deploy.sh response-cron 
+  # on:
+  #   branch: master
+
+notifications:
+  slack: bymiles:u7E9pEbrU1gdYCZ297DgFeua
