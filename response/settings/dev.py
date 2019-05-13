@@ -10,6 +10,7 @@ if os.environ.get("POSTGRES"):
             'PORT': '5432',
             'USER': 'postgres',
             'NAME': 'postgres',
+            'PASSWORD': 'postgres',
         }
     }
 
