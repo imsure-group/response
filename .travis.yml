@@ -15,16 +15,8 @@ env:
   - TAG=v1.0.$TRAVIS_BUILD_NUMBER
 
 script:
-- docker build -t $CONTAINER_APP:$TAG -f Dockerfile.response .
-- docker build -t $CONTAINER_CRON:$TAG -f Dockerfile.cron .
-
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: sh ./deploy.sh $CONTAINER_APP && sh ./deploy.sh $CONTAINER_CRON
-  on:
-    all_branches: true
-    # branch: master
+- sh ./deploy.sh $CONTAINER_APP Dockerfile.response
+- sh ./deploy.sh $CONTAINER_CRON Dockerfile.cron
 
 notifications:
   slack: bymiles:u7E9pEbrU1gdYCZ297DgFeua
