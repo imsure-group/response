@@ -2,14 +2,12 @@ version: '3'
 services:
 
   response:
-    image: 608560900974.dkr.ecr.eu-west-2.amazonaws.com/response-app:v1.0.8
+    image: 608560900974.dkr.ecr.eu-west-2.amazonaws.com/response-app:v1.0.9
     container_name: response-app
     entrypoint: bash
     command: /app/startup.sh
     ports:
       - "8000:8000"
-    depends_on:
-      - db
     environment:
       POSTGRES: "true"
     env_file: .env
@@ -23,7 +21,7 @@ services:
         awslogs-stream-prefix: app
 
   cron:
-    image: 608560900974.dkr.ecr.eu-west-2.amazonaws.com/response-cron:v1.0.8
+    image: 608560900974.dkr.ecr.eu-west-2.amazonaws.com/response-cron:v1.0.9
     container_name: response-cron
     depends_on:
       - response
@@ -34,20 +32,6 @@ services:
         awslogs-group: response
         awslogs-region: eu-west-2
         awslogs-stream-prefix: cron    
-
-  db:
-    image: "postgres:11.2"
-    container_name: postgres
-    ports:
-      - "5432:5432"    
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    logging:
-      driver: awslogs
-      options:
-        awslogs-group: response
-        awslogs-region: eu-west-2
-        awslogs-stream-prefix: db      
 
   ngrok:
     image: gtriggiano/ngrok-tunnel
