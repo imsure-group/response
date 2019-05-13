@@ -2,7 +2,7 @@
 
 wait_for_db()
 {
-    while ! nc -z localhost 5432;
+    while ! nc -z db 5432;
     do sleep 1;
     done;
 }
@@ -20,8 +20,8 @@ except IntegrityError:
 EOF
 }
 
-echo "[INFO] Waiting for DB"
-wait_for_db
+# echo "[INFO] Waiting for DB"
+# wait_for_db
 
 echo "[INFO] Migrating database"
 cd /app

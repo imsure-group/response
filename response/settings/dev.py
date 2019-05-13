@@ -6,7 +6,7 @@ if os.environ.get("POSTGRES"):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'HOST': 'db',
+            'HOST': 'bymiles-test-response.coguvkii6yb2.eu-west-2.rds.amazonaws.com',
             'PORT': '5432',
             'USER': 'postgres',
             'NAME': 'postgres',
