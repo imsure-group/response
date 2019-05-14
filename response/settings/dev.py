@@ -1,6 +1,6 @@
 from .base import *
 
-SITE_URL = "http://localhost:8000"
+SITE_URL = "https://response.test.bymiles.co.uk"
 
 if os.environ.get("POSTGRES"):
     DATABASES = {
